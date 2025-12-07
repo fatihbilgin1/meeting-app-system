@@ -1,0 +1,226 @@
+:root {
+  --primary-color: #007bff;       /* Marka Mavisi */
+  --primary-dark: #0056b3;
+  --bg-color: #f4f7f6;            /* Modern Arka Plan */
+  --text-dark: #2c3e50;
+  --text-light: #6c757d;
+  --input-bg: #f9f9f9;            /* Inputların iç rengi */
+  --input-border: #e1e1e1;
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08); /* Havalı Gölge */
+}
+
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Formu dikeyde de ortalar */
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-color);
+}
+
+.logo-container {
+  margin-bottom: 20px;
+  animation: fadeInDown 0.5s ease;
+}
+
+/* --- FORM KARTI --- */
+.booking-form {
+  background-color: #fff;
+  border-radius: 20px; /* Daha yumuşak köşeler */
+  padding: 40px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0,0,0,0.02); /* Çok ince sınır */
+  width: 100%;
+  max-width: 650px; /* Genişliği biraz arttırdım, ferah olsun */
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* Kartın Üstündeki Renkli Marka Çizgisi */
+.booking-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, #00d2ff 100%);
+}
+
+.booking-form h3 {
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Eski alt çizgiyi kaldırdım, yerine açıklama metni için stil ekliyorum */
+.form-header p {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.booking-form h3::after {
+  display: none; /* Eski siyah çizgiyi iptal et */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Inputlar arası boşluk */
+}
+
+/* Yan Yana Duran Inputlar */
+.name-row,
+.contact-row {
+  display: flex;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 2px;
+}
+
+/* --- INPUT VE TEXTAREA TASARIMI --- */
+.input-group input,
+.input-group textarea,
+.input-group select {
+  padding: 14px 16px;
+  border: 2px solid var(--input-border); /* Çerçeveyi kalınlaştırdım */
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: var(--input-bg);
+  color: #333;
+  font-family: inherit;
+}
+
+/* Tıklayınca Mavi Yanma Efekti (Focus) */
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-color: var(--primary-color);
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15); /* Mavi halka */
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* --- BUTONLAR --- */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+/* Onayla Butonu (Mavi Gradient) */
+.form-button {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0062cc 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  flex: 2; /* Onayla butonu daha geniş olsun */
+}
+
+.form-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* Geri Dön Butonu (Sade) */
+.back-button {
+  background-color: #fff;
+  color: var(--text-light);
+  border: 2px solid #e1e1e1;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.back-button:hover {
+  background-color: #f8f9fa;
+  border-color: #d1d1d1;
+  color: var(--text-dark);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .booking-form {
+    padding: 30px 20px;
+  }
+  
+  .name-row,
+  .contact-row {
+    flex-direction: column; /* Mobilde alt alta al */
+    gap: 15px;
+  }
+  
+  .button-group {
+    flex-direction: column-reverse; /* Mobilde Geri butonu altta olsun */
+    gap: 15px;
+  }
+  
+  .back-button,
+  .form-button {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+/* Animasyonlar */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

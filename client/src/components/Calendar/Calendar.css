@@ -1,0 +1,324 @@
+:root {
+  --primary-color: #007bff; /* Ana Marka Rengi (Mavi) */
+  --primary-hover: #0056b3;
+  --bg-color: #f4f7f6;      /* Göz yormayan modern gri */
+  --text-dark: #2c3e50;
+  --text-light: #6c757d;
+  --border-radius: 12px;
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08); /* Yumuşak Gölge */
+}
+
+.calendar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  height: auto;
+  margin-bottom: 20px;
+  animation: fadeInDown 0.5s ease;
+}
+
+/* --- ANA KART TASARIMI --- */
+.calendar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0; /* Boşluğu kaldırdım, border ile ayıracağız */
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Üstteki Renkli Çizgi */
+.calendar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, #00c6ff 100%);
+}
+
+/* --- SOL TARAF (KULLANICI & TAKVİM) --- */
+.calendar-left {
+  flex: 1;
+  padding: 40px;
+  background-color: #fafafa; /* Sol tarafı hafif ayırdım */
+  border-right: 1px solid #eee;
+}
+
+.calendar-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Sola hizalı daha şık durur */
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.user-avatar, .user-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  /* Grayscale'i kaldırdım, canlı dursun */
+}
+
+.user-avatar:hover {
+  transform: scale(1.05) rotate(5deg);
+  border-color: var(--primary-color);
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.user-title {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* --- SAĞ TARAF (SEÇİMLER) --- */
+.calendar-right {
+  flex: 1.2; /* Sağ taraf biraz daha geniş olsun */
+  padding: 40px;
+  background: #fff;
+}
+
+h5 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Başlık yanına ufak ikonik çizgi */
+h5::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+h5::after {
+  display: none; /* Eski alt çizgiyi kaldırdım */
+}
+
+/* --- SÜRE BUTONLARI --- */
+.duration-options {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.duration-btn {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 2px solid #eef2f7;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.duration-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: #f0f8ff;
+}
+
+.duration-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Mavi Glow */
+}
+
+/* --- SAAT SEÇİM IZGARASI --- */
+.calendar-time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 2 yerine 3 yaptım, daha derli toplu */
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.time-slot-btn {
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.2s;
+}
+
+.time-slot-btn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.time-slot-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.time-slot-btn:disabled {
+  background-color: #f9f9f9;
+  color: #ddd;
+  border-color: #f0f0f0;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* --- REACT CALENDAR ÖZELLEŞTİRME (EN ZOR KISIM) --- */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  font-family: inherit !important;
+}
+
+.react-calendar__navigation {
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation button {
+  color: var(--text-dark);
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #f0f8ff;
+  border-radius: 8px;
+}
+
+.react-calendar__month-view__weekdays {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-decoration: none; /* Alt çizgileri kaldırır */
+}
+/* Günlerin altındaki çirkin çizgileri (abbr) kaldırır */
+abbr[title] {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  padding: 15px 0;
+  font-weight: 600;
+  color: var(--text-dark);
+  border-radius: 50%; /* Kare değil yuvarlak olsun */
+  transition: 0.2s;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #eef2f7;
+  color: var(--primary-color);
+}
+
+.react-calendar__tile--now {
+  background: #fff3cd !important; /* Bugünün rengi hafif sarı */
+  color: #856404;
+  border-radius: 50%;
+}
+
+.react-calendar__tile--active {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border-radius: 50%; /* Tam yuvarlak */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* --- SCROLLBAR --- */
+.calendar-time-slots::-webkit-scrollbar {
+  width: 6px;
+}
+.calendar-time-slots::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.calendar-time-slots::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.calendar-time-slots::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 900px) {
+  .calendar {
+    flex-direction: column;
+    max-width: 500px;
+  }
+  
+  .calendar-left {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 30px;
+  }
+  
+  .calendar-time-slots {
+    grid-template-columns: repeat(3, 1fr);
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar-time-slots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Animasyonlar */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

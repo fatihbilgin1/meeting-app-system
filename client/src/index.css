@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+/* TÜM LOGOLAR İÇİN ORTAK STİL */
+.app-logo {
+  width: 180px; /* Sabit genişlik (istediğin değeri verebilirsin) *//* Oranları korur */
+  display: block; /* Yanında başka element varsa problem çıkarmasın */ /* Üst:0, Sağ-sol:auto (ortalar), Alt:30px */
+  transition: all 0.3s ease; /* Zoom efekti için */
+}
+
+/* HOVER EFEKTİ (İstersen) */
+.app-logo:hover {
+  transform: scale(1.05); /* Mouse üstüne gelince hafif büyüsün */
+}

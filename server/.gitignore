@@ -1,0 +1,9 @@
+node_modules/
+
+.env
+
+# Loglar
+npm-debug.log*
+yarn-debug.log*
+logs/
+*.log

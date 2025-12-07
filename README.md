@@ -18,17 +18,17 @@ The project demonstrates advanced full-stack concepts including JWT authenticati
 ### 1. Time Selection Interface
 Users get a modern, intuitive calendar view to choose their preferred date and time slot.
 ![Calendar View](screenshot-calendar.png)
-*(Note: Please upload your screenshot named 'screenshot-calendar.png' to the root directory)*
+
 
 ### 2. Secure Booking Form
 After selecting a slot, users provide their details via a clean, validated form designed for conversion.
 ![Booking Form](screenshot-bookform.png)
-*(Note: Please upload your screenshot named 'screenshot-form.png' to the root directory)*
+
 
 ### 3. Instant Confirmation
 Upon success, a confirmation screen is shown, and emails are dispatched instantly with the Google Meet link.
 ![Success Screen](screenshot-success.png)
-*(Note: Please upload your screenshot named 'screenshot-success.png' to the root directory)*
+
 
 ---
 
